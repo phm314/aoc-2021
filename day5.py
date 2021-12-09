@@ -7,9 +7,19 @@ def part1(data):
         if x1 == x2:
             for ypt in range(min(y1, y2), max(y1, y2) + 1):
                 grid[x1][ypt] += 1
-        if y1 == y2:
+        elif y1 == y2:
             for xpt in range(min(x1, x2), max(x1, x2) + 1):
                 grid[xpt][y1] += 1
+        else:
+            # part 2
+            # != 20356, 20227 (high)
+            # != 19236 (low)
+            # == 19258
+            xr = range(x1, x2 - 1, -1) if x1 > x2 else range(x1, x2 + 1)
+            yr = range(y1, y2 - 1, -1) if y1 > y2 else range(y1, y2 + 1)
+            for xpt, ypt in zip(xr, yr):
+                grid[xpt][ypt] += 1
+                
 
     solution = 0
     for row in grid:
@@ -22,8 +32,6 @@ def part1(data):
     # == 6841
 
 if __name__ == "__main__":
-    import os
-    os.system("cls")
     with open("inputs/day5.txt") as file:
         data = []
         for row in file:

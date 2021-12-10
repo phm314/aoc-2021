@@ -13,7 +13,6 @@ def part1(data):
 def part2(data):
     solution = float("inf")
     for i in range(min(data), max(data)):
-        print(i)
         current = 0
         for pos in data:
             # SLOW

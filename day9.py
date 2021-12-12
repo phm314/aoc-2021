@@ -66,11 +66,56 @@ def find_lowpoint_1d(lst):
             large[row_ind][sol_ind] = 1
     return large
 
+def part2(data):
+    """
+    every square that is not a 9 forms a basin,
+    so we can search through those. basically,
+    solving part 2 with the same iterative method.
+    """
+    basin_data = [[int(elem != 9) for elem in row] for row in data]
+    all_basins = []
+    for r_ind, row in enumerate(basin_data):
+        for c_ind, col in enumerate(row):
+            if not col:
+                continue
+            neighbors = []
+            if r_ind != 0:
+                neighbors.append((r_ind - 1, c_ind))
+            if r_ind != len(basin_data) - 1:
+                neighbors.append((r_ind + 1, c_ind))
+            if c_ind != 0:
+                neighbors.append((r_ind, c_ind - 1))
+            if c_ind != len(row) - 1:
+                neighbors.append((r_ind, c_ind + 1))
+
+            current_basin = []
+            for rnxt, cnxt in neighbors:
+                if not basin_data[rnxt][cnxt]:
+                    continue
+                current_basin.append((rnxt, cnxt))
+                basin_data[rnxt][cnxt] = 0
+                # add next neighbors to check in current list
+
+                if rnxt != 0:
+                    neighbors.append((rnxt - 1, cnxt))
+                if rnxt != len(basin_data) - 1:
+                    neighbors.append((rnxt + 1, cnxt))
+                if cnxt != 0:
+                    neighbors.append((rnxt, cnxt - 1))
+                if cnxt != len(row) - 1:
+                    neighbors.append((rnxt, cnxt + 1))
+
+            all_basins.append(current_basin)
+
+    all_basins.sort(reverse=True, key=len)
+    solution = len(all_basins[0]) * len(all_basins[1]) * len(all_basins[2])
+    print(solution)
+    # 1103130
 
 if __name__ == "__main__":
     import sys
     if len(sys.argv) == 2:
-        with open(sys.argv[1], "r", encoding="utf-8") as file:
+        with open(sys.argv[1], "r") as file:
             grid = [[int(i) for i in row.strip()] for row in file]
 
-        part1(grid)
+        part2(grid)

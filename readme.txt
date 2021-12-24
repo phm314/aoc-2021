@@ -21,7 +21,7 @@ basic info about each day
 17 : velocity calculation
 18 : 
 19 : 
-20 : 
+20 : infinite automata
 21 : 
 22 : 
 23 : 

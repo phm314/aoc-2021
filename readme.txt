@@ -19,11 +19,11 @@ basic info about each day
 15 : minimal path sum
 16 : recursive binary parsing
 17 : velocity calculation
-18 : 
-19 : 
+18 : tree reduction
+19 : permutations ?
 20 : infinite automata
-21 : 
-22 : 
-23 : 
-24 : 
-25 : 
+21 : probability
+22 : cuboid computation
+23 : minimal puzzle solution
+24 : assembly
+25 : automata
